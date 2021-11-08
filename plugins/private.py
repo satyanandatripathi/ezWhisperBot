@@ -77,7 +77,7 @@ DEFAULT_REPLY_MARKUP = InlineKeyboardMarkup(
 @Client.on_message(filters.text
                    & filters.incoming
                    & ~filters.edited
-                   & filters.command("start"))
+                   & filters.command("wstart"))
 async def command_start(_, m: Message):
     if len(m.command) == 2 and m.command[1] == "learn":
         text_start = LEARN_TEXT
@@ -92,7 +92,7 @@ async def command_start(_, m: Message):
     )
 
 
-@Client.on_callback_query(filters.regex("^(learn_next|start)$"))
+@Client.on_callback_query(filters.regex("^(learn_next|wstart)$"))
 async def show_main_page(_, cq: CallbackQuery):
     await cq.edit_message_text(
         text=DEFAULT_TEXT,
